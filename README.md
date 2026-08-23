@@ -19,6 +19,10 @@ authorized devices. No changes to LazyLibrarian's code.
 - **Shell caching**: app shell loads fast / works offline-ish; library data stays
   network-fresh (network-first)
 
+## Screenshot
+![LazyLibrarian PWA login (aquamarine)](demo-screenshot.png)
+The themed login page in a phone-sized standalone window (FORM auth, no browser popup).
+
 ## Files
 | File | Purpose |
 |---|---|
