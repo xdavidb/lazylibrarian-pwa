@@ -1,16 +1,22 @@
 // LazyLibrarian PWA — full design layer via service-worker injection
 // v2.1 (2026-08-23): ALL design changes injected at page-load. No LL file changes.
 // Works on any LazyLibrarian install behind a proxy.
-const CACHE = 'll-pwa-v3';
+const CACHE = 'll-pwa-v5';
 // NOTE: only static assets here. NEVER precache HTML pages like /books —
 // they 303-redirect to login when unauthenticated, which makes addAll() fail
 // and the whole SW install fails.
-const SHELL = ['/ll-pwa/css/injected.css', '/ll-pwa/js/injected.js'];
+const SHELL = ['/ll-pwa/css/lazylibrarian-base.css', '/ll-pwa/css/aquamarine.css',
+               '/ll-pwa/css/injected.css', '/ll-pwa/js/injected.js'];
 
 // ---- HTML injections (per-page) ----
+// Theme CSS order: lazylibrarian-base (structure) -> aquamarine (colors) -> injected (mobile layout)
 function injectCss(html) {
   if (html.indexOf('ll-injected-css') !== -1) return html;
-  return html.replace('</head>', '<link rel="stylesheet" id="ll-injected-css" href="/ll-pwa/css/injected.css"></head>');
+  return html.replace('</head>',
+    '<link rel="stylesheet" id="ll-injected-css" href="/ll-pwa/css/lazylibrarian-base.css">' +
+    '<link rel="stylesheet" href="/ll-pwa/css/aquamarine.css">' +
+    '<link rel="stylesheet" href="/ll-pwa/css/injected.css">' +
+    '</head>');
 }
 function injectJs(html) {
   if (html.indexOf('ll-injected-js') !== -1) return html;

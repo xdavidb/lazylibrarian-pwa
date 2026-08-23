@@ -1,0 +1,127 @@
+
+/* ===== LL mobile design layer (injected) ===== */
+@media (max-width: 768px) {
+  body { overflow-x: hidden !important; }
+  .container, .container-fluid { padding-left: 8px !important; padding-right: 8px !important; max-width: 100% !important; }
+  .dataTables_wrapper { overflow: visible !important; }
+
+  /* tables -> stacked cards */
+  table#book_table, table#author_table, table.display, .dataTable {
+    display: block !important; width: 100% !important; border: none !important;
+  }
+  table#book_table thead, table#author_table thead, .dataTable thead { display: none !important; }
+  table#book_table tbody, table#author_table tbody, .dataTable tbody { display: block !important; }
+
+  table#book_table tbody tr, table#author_table tbody tr, .dataTable tbody tr {
+    display: grid !important;
+    grid-template-columns: 64px 1fr !important;
+    gap: 4px 10px;
+    background: rgba(10, 40, 70, 0.55) !important;
+    border: 1px solid #265c74 !important;
+    border-radius: 10px !important;
+    margin: 0 0 10px 0 !important;
+    padding: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  table#book_table tbody tr td:has(img), table#author_table tbody tr td:has(img) {
+    grid-column: 1 !important; grid-row: 1 / span 3 !important;
+    width: 64px !important; padding: 0 !important; border: none !important;
+    vertical-align: top !important;
+  }
+  table#book_table tbody tr td:has(img) img, table#author_table tbody tr td:has(img) img {
+    width: 60px !important; height: auto !important; border-radius: 6px !important; display: block !important;
+  }
+  table#book_table tbody tr td:first-child, table#author_table tbody tr td:first-child {
+    display: block !important; grid-column: 1 !important; width: auto !important;
+    padding: 0 2px !important; border: none !important;
+  }
+  table#book_table tbody tr td:first-child input, table#author_table tbody tr td:first-child input {
+    width: 20px !important; height: 20px !important; transform: scale(1.2) !important;
+  }
+  table#book_table tbody tr td:not(:first-child):not(:has(img)), table#author_table tbody tr td:not(:first-child):not(:has(img)) {
+    grid-column: 2 !important; display: block !important; padding: 1px 0 !important;
+    border: none !important; font-size: 13px !important; line-height: 1.4 !important;
+    white-space: normal !important; text-align: left !important;
+  }
+  table#book_table tbody tr td:nth-child(3)::before { content: "\✍ "; color: #8dcfc9; font-weight: 600; }
+  table#book_table tbody tr td:nth-child(4)::before { content: "\📖 "; color: #8dcfc9; font-weight: 600; }
+  table#book_table tbody tr td:nth-child(5),
+  table#book_table tbody tr td:nth-child(6),
+  table#book_table tbody tr td:nth-child(7) { display: none !important; }
+  table#book_table tbody tr td:nth-child(8) {
+    display: inline-block !important; font-size: 11px !important; color: #8dcfc9 !important; margin-right: 8px !important;
+  }
+  table#book_table tbody tr td:nth-child(9) {
+    display: inline-block !important; margin-top: 2px; padding: 2px 10px !important;
+    border-radius: 12px !important; background: #009688 !important; color: #eee !important;
+    font-weight: 600 !important; font-size: 11px !important; white-space: nowrap !important;
+  }
+  table#book_table tbody tr td:last-child {
+    background: transparent !important; border: none !important; padding: 2px 0 0 0 !important; text-align: left !important;
+  }
+  table#book_table tbody tr td:last-child p { display: inline !important; margin: 0 4px 0 0 !important; }
+  table#book_table tbody tr td:last-child .btn {
+    display: inline-block !important; padding: 3px 10px !important; font-size: 12px !important;
+    margin: 2px 4px 2px 0 !important; border-radius: 6px !important;
+  }
+  /* authors page */
+  table#author_table tbody tr { grid-template-columns: 56px 1fr !important; }
+  table#author_table tbody tr td:nth-child(5),
+  table#author_table tbody tr td:nth-child(6),
+  table#author_table tbody tr td:nth-child(7) { display: none !important; }
+  table#author_table tbody tr td:nth-child(3)::before { content: "\✍ "; color: #8dcfc9; font-weight: 600; }
+  table#author_table tbody tr td:nth-child(4)::before { content: "Added: "; color: #8dcfc9; font-weight: 600; }
+  table#author_table tbody tr td:nth-child(8) {
+    display: inline-block !important; margin-top: 2px; padding: 2px 10px !important;
+    border-radius: 12px !important; background: #009688 !important; color: #eee !important;
+    font-weight: 600 !important; font-size: 11px !important; white-space: nowrap !important;
+  }
+  table#author_table tbody tr td:has(img) img {
+    width: 48px !important; height: 48px !important; border-radius: 50% !important; object-fit: cover !important;
+  }
+  /* pagination */
+  .dataTables_paginate {
+    display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
+    gap: 3px !important; padding: 6px 0 !important; max-width: 100% !important;
+  }
+  .dataTables_paginate .pagination {
+    display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
+    gap: 3px !important; margin: 0 !important; padding: 0 !important; max-width: 100% !important;
+  }
+  .dataTables_paginate .pagination li, .dataTables_paginate .paginate_button { flex: 0 0 auto !important; }
+  .dataTables_paginate .paginate_button { padding: 6px 10px !important; font-size: 13px !important; border-radius: 6px !important; }
+  .dataTables_info { font-size: 12px !important; text-align: center !important; width: 100% !important; }
+  /* length selector */
+  .dataTables_length { display: block !important; width: 100% !important; text-align: center !important; margin: 6px 0 !important; }
+  .dataTables_length select {
+    padding: 6px 8px !important; font-size: 14px !important; border-radius: 6px !important;
+    background: #12303f !important; color: #eee !important; border: 1px solid #265c74 !important;
+  }
+  input[type="search"], .dataTables_filter input {
+    width: 100% !important; max-width: 100% !important; padding: 10px !important;
+    font-size: 16px !important; border-radius: 8px !important; margin: 6px 0 !important;
+    box-sizing: border-box !important;
+  }
+  .btn { padding: 10px 14px !important; font-size: 15px !important; margin: 2px 0 !important; }
+  .navbar, .navbar-header, .navbar-collapse { flex-wrap: wrap !important; }
+  .navbar .nav > li { float: none !important; display: inline-block !important; }
+}
+/* login page theming (formlogin.html has its own minimal template) */
+@media (max-width: 768px) {
+  form[action="login"] {
+    background: rgba(10, 40, 70, 0.75) !important;
+    padding: 2.5rem 2rem !important; border-radius: 12px !important;
+    width: min(320px, 88vw) !important; margin: 20vh auto 0 auto !important;
+  }
+  form[action="login"] input[type="text"], form[action="login"] input[type="password"] {
+    width: 100% !important; padding: 0.7rem 0.9rem !important; border-radius: 8px !important;
+    border: 1px solid #265c74 !important; background: rgba(255,255,255,0.08) !important;
+    color: #eee !important; box-sizing: border-box !important; font-size: 1rem !important;
+  }
+  form[action="login"] button {
+    width: 100% !important; margin-top: 0.8rem !important; padding: 0.75rem !important;
+    border: none !important; border-radius: 8px !important; background: #009688 !important;
+    color: #eee !important; font-size: 1rem !important; font-weight: 600 !important;
+  }
+}

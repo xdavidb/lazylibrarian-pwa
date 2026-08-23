@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LazyLibrarian</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <style>
+    body { background: radial-gradient(ellipse at center, #47918a 0%, #0b3161 100%) center center/cover no-repeat fixed; min-height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0; font-family: sans-serif; }
+    .splash { text-align: center; color: #eee; }
+    .splash img { width: 80px; border-radius: 16px; }
+    .splash p { color: #8dcfc9; }
+  </style>
+</head>
+<body>
+  <div class="splash">
+    <img src="/apple-touch-icon.png" alt="LazyLibrarian">
+    <p>Opening your library…</p>
+  </div>
+  <script>
+    (function() {
+      // Splash: register the SW, then RELOAD IN PLACE until it controls this page.
+      // Only then redirect to /books. Never redirect before control (that would
+      // load the app without the SW -> old UI + no standalone mode).
+      var attempts = 0;
+      function go() {
+        window.location.replace('/books');
+      }
+      function register() {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw-v5.js', { scope: '/' }).then(function() {
+            if (navigator.serviceWorker.controller) {
+              // SW controls this page already -> app will be injected
+              go();
+            } else if (attempts < 3) {
+              attempts++;
+              // reload in place: the next load IS controlled by the fresh SW
+              window.location.reload();
+            } else {
+              // give up after 3 tries rather than trap the user
+              go();
+            }
+          }).catch(go);
+        } else {
+          go();
+        }
+      }
+      register();
+    })();
+  </script>
+</body>
+</html>

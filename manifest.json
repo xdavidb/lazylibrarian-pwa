@@ -2,7 +2,7 @@
   "name": "LazyLibrarian",
   "short_name": "Books",
   "description": "Your audiobook & ebook library",
-  "start_url": "/authors",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0b3161",
   "theme_color": "#47918a",
